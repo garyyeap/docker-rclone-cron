@@ -20,4 +20,4 @@ ENV CRON_SCHEDULE="0 0 * * *"
 ENV COMMAND="rclone version"
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["crond", "-f"]
+CMD ["crond", "-n"]
