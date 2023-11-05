@@ -2,6 +2,9 @@ FROM alpine:3.9
 
 ARG RCLONE_VERSION=1.64.0
 
+# set Timezone
+RUN apk add --no-cache tzdata
+
 # install rclone
 RUN apk add --no-cache wget ca-certificates && \
     wget -q https://downloads.rclone.org/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-amd64.zip && \
@@ -20,4 +23,4 @@ ENV CRON_SCHEDULE="0 0 * * *"
 ENV COMMAND="rclone version"
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["crond", "-n"]
+CMD ["crond", "-f"]
